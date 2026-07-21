@@ -112,15 +112,18 @@ header.scrolled{
 .burger{
   display:none;
   position:relative; z-index:140;
-  width:44px; height:44px;
-  background:transparent;
-  border:1px solid var(--line);
-  border-radius:10px;
+  width:46px; height:46px;
+  /* Тёмная плашка + золотая рамка — значок виден на любом фоне (в т.ч. на светлом) */
+  background:rgba(23,16,31,0.82);
+  border:1px solid rgba(217,164,65,0.45);
+  border-radius:12px;
   cursor:pointer;
   align-items:center; justify-content:center;
   flex-direction:column; gap:5px;
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+  box-shadow:0 6px 18px -8px rgba(0,0,0,0.6);
 }
-.burger span{display:block; width:20px; height:2px; background:var(--ivory); border-radius:2px; transition:transform .2s, opacity .2s;}
+.burger span{display:block; width:20px; height:2px; background:var(--gold-soft); border-radius:2px; transition:transform .2s, opacity .2s;}
 .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .burger[aria-expanded="true"] span:nth-child(2){opacity:0;}
 .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
@@ -701,8 +704,18 @@ footer{background:var(--night-2); border-top:1px solid var(--line); padding:44px
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 900px){
+  /* На мобильном шапка всегда с непрозрачным фоном — логотип и кнопка
+     меню читаются на любом разделе (в т.ч. на светлых блоках «Меню»). */
+  header, header.scrolled{
+    background:rgba(26,19,38,0.97);
+    -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    padding:12px 0;
+  }
   .nav-links{
     position:fixed; top:0; right:0; bottom:0; width:min(340px, 86vw);
+    height:100vh; height:100dvh;             /* гарантированно во всю высоту экрана */
+    overflow-y:auto; -webkit-overflow-scrolling:touch;
     flex-direction:column; align-items:stretch; gap:2px;
     background:#17101F; border-left:1px solid rgba(217,164,65,0.18);
     box-shadow:-34px 0 90px rgba(0,0,0,0.65);
@@ -741,4 +754,28 @@ footer{background:var(--night-2); border-top:1px solid var(--line); padding:44px
   .sticky-cta{display:flex;}
   body{padding-bottom:74px;}
   .field-row{grid-template-columns:1fr;}
+
+  /* Крупные, удобные для пальца кнопки в первом экране и CTA-полосах */
+  .hero-ctas{width:100%;}
+  .hero-ctas .btn{width:100%; justify-content:center;}
+  .contact-actions .btn{flex:1; justify-content:center;}
+
+  /* Аккуратная герой-карточка на маленьком экране */
+  .scene{height:340px;}
+  .scene-crest{top:38px; width:52px; height:52px; font-size:23px;}
+  .scene-divider{top:110px;}
+  .scene-title{top:130px; font-size:18px;}
+  .scene-caption-bottom{bottom:24px;}
+
+  /* Чуть компактнее заголовки страниц */
+  .page-hero h1{font-size:clamp(28px, 8vw, 40px);}
+  .hero-stats{gap:20px 28px;}
+}
+
+/* Совсем узкие телефоны */
+@media (max-width: 400px){
+  .wrap{padding:0 18px;}
+  .logo{font-size:20px;}
+  .hero h1{font-size:32px;}
+  .scene{height:300px;}
 }
