@@ -29,21 +29,65 @@
   /* ---------- Мобильное меню (бургер) ---------- */
   var burger = document.querySelector('.burger');
   var navLinks = document.getElementById('navLinks');
+  var siteHeader = document.getElementById('siteHeader');
   if (burger && navLinks) {
-    var closeMenu = function () {
-      navLinks.classList.remove('open');
-      burger.setAttribute('aria-expanded', 'false');
-    };
-    burger.addEventListener('click', function () {
-      var open = navLinks.classList.toggle('open');
+    // Затемняющий слой под меню — создаём один раз
+    var scrim = document.createElement('div');
+    scrim.className = 'nav-scrim';
+    document.body.appendChild(scrim);
+
+    var setMenu = function (open) {
+      navLinks.classList.toggle('open', open);
+      scrim.classList.toggle('show', open);
+      if (siteHeader) siteHeader.classList.toggle('nav-open', open);
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+    var closeMenu = function () { setMenu(false); };
+
+    burger.addEventListener('click', function () {
+      setMenu(!navLinks.classList.contains('open'));
     });
+    scrim.addEventListener('click', closeMenu);
     navLinks.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', closeMenu);
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeMenu();
     });
+    // При переходе на десктоп — сбрасываем состояние
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 900) closeMenu();
+    });
+  }
+
+  /* ---------- Появление блоков при прокрутке ---------- */
+  var revealTargets = document.querySelectorAll(
+    '.section-head, .about-card, .cuisine-card, .t-card, .spec-card, ' +
+    '.event-block, .config-tab, .gallery-grid > figure, .menu-section, ' +
+    '.cta-band .wrap, .map-wrap, form.book, .contact-info'
+  );
+  if (revealTargets.length) {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
+      revealTargets.forEach(function (el) { el.classList.add('reveal', 'in'); });
+    } else {
+      var io = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      revealTargets.forEach(function (el, i) {
+        el.classList.add('reveal');
+        // лёгкая ступенчатая задержка для соседних элементов в одном ряду
+        var siblings = el.parentElement ? el.parentElement.children.length : 1;
+        if (siblings > 1) el.style.transitionDelay = ((i % 4) * 80) + 'ms';
+        io.observe(el);
+      });
+    }
   }
 
   /* ---------- Конфигуратор рассадки (главная + страница зала) ---------- */
