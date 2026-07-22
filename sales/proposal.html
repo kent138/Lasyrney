@@ -5,229 +5,286 @@
 <title>Коммерческое предложение — сайт «Лазурный»</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600;9..144,0,700;9..144,1,400;9..144,1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --night:#221A2E; --night-2:#2E2440; --night-3:#3A2E52;
+    --night:#1E1729; --night-2:#2A2038; --night-3:#372B4E;
     --gold:#D9A441; --gold-soft:#E8C878; --rose:#C97B86;
-    --ivory:#F4ECDD; --line:rgba(244,236,221,0.14);
+    --ivory:#F4ECDD; --line:rgba(244,236,221,0.13); --gline:rgba(217,164,65,0.28);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   @page{ size:A4; margin:0; }
   body{ font-family:'Manrope',sans-serif; color:var(--ivory); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   h1,h2,h3,.serif{ font-family:'Fraunces',serif; letter-spacing:-0.01em; }
+  em{ font-style:italic; }
+
   .page{
     position:relative;
-    width:210mm; min-height:297mm; padding:20mm 18mm;
+    width:210mm; min-height:297mm; padding:17mm 16mm 20mm;
     background:var(--night); overflow:hidden;
     page-break-after:always;
   }
   .page:last-child{ page-break-after:auto; }
-  .eyebrow{ font-size:10.5px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-soft); font-weight:700; display:flex; align-items:center; gap:9px; }
-  .eyebrow::before{ content:""; width:22px; height:1px; background:var(--gold); }
-  .mark{ display:inline-flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-size:22px; font-weight:700; }
-  .mark::before{ content:""; width:10px; height:10px; transform:rotate(45deg); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); border-radius:2px; }
-  .mark span{ color:var(--gold); }
-  .muted{ color:rgba(244,236,221,0.7); }
-  .gold{ color:var(--gold-soft); }
-  img{ display:block; max-width:100%; border-radius:10px; }
-  .shadow{ box-shadow:0 24px 60px -30px rgba(0,0,0,0.9); border:1px solid var(--line); }
+  /* Фирменная рамка-паспарту */
+  .page::before{
+    content:""; position:absolute; inset:7mm;
+    border:1px solid var(--gline); border-radius:4px; pointer-events:none;
+  }
+  .page::after{
+    content:""; position:absolute; top:7mm; left:7mm; width:11mm; height:11mm;
+    border-top:2px solid var(--gold); border-left:2px solid var(--gold);
+    border-radius:4px 0 0 0; pointer-events:none;
+  }
+  .inner{ position:relative; z-index:2; }
 
-  /* COVER */
-  .cover{ display:flex; flex-direction:column; background:
-      radial-gradient(ellipse 160mm 120mm at 80% 8%, rgba(217,164,65,0.16), transparent 60%),
-      radial-gradient(ellipse 180mm 120mm at 0% 100%, rgba(201,123,134,0.10), transparent 60%),
+  .eyebrow{ font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-soft); font-weight:700; display:inline-flex; align-items:center; gap:9px; }
+  .eyebrow::before{ content:""; width:22px; height:1px; background:var(--gold); }
+  .mark{ display:inline-flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-size:20px; font-weight:700; }
+  .mark::before{ content:""; width:9px; height:9px; transform:rotate(45deg); background:linear-gradient(135deg,var(--gold),var(--gold-soft)); border-radius:2px; }
+  .mark span{ color:var(--gold); }
+  .muted{ color:rgba(244,236,221,0.66); }
+  .gold{ color:var(--gold-soft); }
+  img{ display:block; max-width:100%; border-radius:9px; }
+  .shadow{ box-shadow:0 26px 60px -30px rgba(0,0,0,0.9); border:1px solid var(--line); }
+
+  /* Running header on content pages */
+  .runhead{ display:flex; justify-content:space-between; align-items:center; padding-bottom:12px; border-bottom:1px solid var(--line); margin-bottom:22px; }
+  .runhead .mark{ font-size:16px; }
+  .runhead .rh-num{ font-family:'Fraunces',serif; font-size:12px; color:var(--gold-soft); letter-spacing:0.08em; }
+
+  /* ---------- COVER ---------- */
+  .cover{ background:
+      radial-gradient(ellipse 150mm 110mm at 82% 6%, rgba(217,164,65,0.18), transparent 58%),
+      radial-gradient(ellipse 170mm 120mm at -5% 104%, rgba(201,123,134,0.12), transparent 60%),
       var(--night); }
   .cover-top{ display:flex; justify-content:space-between; align-items:center; }
-  .cover h1{ font-size:40px; line-height:1.08; margin:16px 0 14px; }
-  .cover h1 em{ font-style:italic; color:var(--gold-soft); }
-  .cover .lead{ font-size:15px; max-width:150mm; color:rgba(244,236,221,0.8); }
-  .cover-hero{ margin-top:auto; }
-  .cover-badges{ display:flex; gap:10px; flex-wrap:wrap; margin:22px 0 10px; }
-  .badge{ border:1px solid var(--line); background:rgba(244,236,221,0.03); border-radius:999px; padding:8px 15px; font-size:12px; font-weight:600; }
+  .cover-kicker{ margin-top:30mm; }
+  .cover h1{ font-size:41px; line-height:1.07; margin:16px 0 16px; max-width:165mm; }
+  .cover h1 em{ color:var(--gold-soft); }
+  .cover .lead{ font-size:14.5px; line-height:1.6; max-width:150mm; color:rgba(244,236,221,0.82); }
+  .divider{ display:flex; align-items:center; gap:12px; margin:24px 0 20px; }
+  .divider .l{ height:1px; width:60px; background:linear-gradient(90deg,var(--gold),transparent); }
+  .divider .d{ width:7px; height:7px; transform:rotate(45deg); background:var(--gold); border-radius:1px; }
+  .cover-badges{ display:flex; gap:9px; flex-wrap:wrap; }
+  .badge{ border:1px solid var(--gline); background:rgba(217,164,65,0.05); border-radius:999px; padding:8px 15px; font-size:11.5px; font-weight:600; }
   .badge b{ color:var(--gold-soft); }
+  .cover-hero{ margin-top:16mm; }
+  .cap{ font-size:10.5px; color:rgba(244,236,221,0.5); margin-top:8px; text-align:center; letter-spacing:0.02em; }
 
-  h2.title{ font-size:28px; margin:12px 0 6px; }
-  .section-lead{ font-size:14px; color:rgba(244,236,221,0.75); max-width:150mm; margin-bottom:20px; }
+  h2.title{ font-size:27px; margin:6px 0 6px; }
+  .section-lead{ font-size:13.5px; color:rgba(244,236,221,0.75); max-width:155mm; margin-bottom:20px; line-height:1.6; }
 
-  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  .card{ background:rgba(244,236,221,0.03); border:1px solid var(--line); border-radius:14px; padding:18px 18px; }
-  .card .n{ font-family:'Fraunces',serif; color:var(--gold); font-size:13px; display:block; margin-bottom:8px; }
-  .card h3{ font-size:16px; margin-bottom:6px; }
-  .card p{ font-size:12.5px; color:rgba(244,236,221,0.7); }
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:13px; }
+  .card{ background:linear-gradient(160deg, rgba(244,236,221,0.045), rgba(244,236,221,0.015)); border:1px solid var(--line); border-radius:14px; padding:17px 18px; position:relative; }
+  .card .n{ width:30px; height:30px; border-radius:50%; border:1px solid var(--gline); color:var(--gold-soft); font-family:'Fraunces',serif; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; margin-bottom:11px; }
+  .card h3{ font-size:15.5px; margin-bottom:6px; }
+  .card p{ font-size:12px; color:rgba(244,236,221,0.7); line-height:1.55; }
 
-  .stat-row{ display:flex; gap:26px; margin:6px 0 22px; flex-wrap:wrap; }
-  .stat b{ font-family:'Fraunces',serif; font-size:26px; color:var(--gold-soft); display:block; }
-  .stat span{ font-size:11.5px; color:rgba(244,236,221,0.6); }
+  .stat-row{ display:flex; gap:12px; margin:2px 0 22px; }
+  .stat-box{ flex:1; border:1px solid var(--line); border-radius:12px; padding:14px 16px; background:rgba(244,236,221,0.02); }
+  .stat-box b{ font-family:'Fraunces',serif; font-size:24px; color:var(--gold-soft); display:block; line-height:1; margin-bottom:5px; }
+  .stat-box span{ font-size:11px; color:rgba(244,236,221,0.6); }
 
-  .highlight{ background:linear-gradient(135deg,var(--night-2),var(--night-3)); border:1px solid var(--line); border-radius:16px; padding:22px; margin-top:16px; }
-  .highlight h3{ font-size:18px; color:var(--gold-soft); margin-bottom:8px; }
-  .highlight p{ font-size:13px; color:rgba(244,236,221,0.82); }
+  .highlight{ background:linear-gradient(135deg,var(--night-2),var(--night-3)); border:1px solid var(--gline); border-radius:16px; padding:20px 22px; margin-top:16px; position:relative; }
+  .highlight::before{ content:""; position:absolute; left:0; top:16px; bottom:16px; width:3px; background:linear-gradient(180deg,var(--gold),transparent); border-radius:3px; }
+  .highlight h3{ font-size:17px; color:var(--gold-soft); margin-bottom:7px; padding-left:8px; }
+  .highlight p{ font-size:12.5px; color:rgba(244,236,221,0.82); line-height:1.6; padding-left:8px; }
 
-  .steps{ counter-reset:step; display:flex; flex-direction:column; gap:12px; margin-top:8px; }
+  ul.checks{ list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:9px 22px; }
+  ul.checks li{ font-size:12.5px; padding-left:24px; position:relative; color:rgba(244,236,221,0.85); }
+  ul.checks li::before{ content:"✓"; position:absolute; left:0; top:-1px; width:16px; height:16px; background:rgba(217,164,65,0.14); color:var(--gold-soft); border-radius:50%; font-size:9px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+
+  .steps{ display:flex; flex-direction:column; gap:11px; }
   .step{ display:flex; gap:14px; align-items:flex-start; }
-  .step .num{ flex:none; width:34px; height:34px; border-radius:50%; border:1px solid var(--gold); color:var(--gold-soft); display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; }
-  .step h3{ font-size:15px; margin-bottom:3px; }
-  .step p{ font-size:12.5px; color:rgba(244,236,221,0.72); }
+  .step .num{ flex:none; width:34px; height:34px; border-radius:50%; background:rgba(217,164,65,0.1); border:1px solid var(--gold); color:var(--gold-soft); display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; }
+  .step h3{ font-size:14.5px; margin-bottom:3px; }
+  .step p{ font-size:12px; color:rgba(244,236,221,0.72); line-height:1.5; }
 
-  .price-box{ text-align:center; background:
-      radial-gradient(ellipse 120mm 60mm at 50% 0%, rgba(217,164,65,0.16), transparent 60%),
-      var(--night-2); border:1px solid var(--gold); border-radius:18px; padding:26px; margin:18px 0; }
-  .price-box .label{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold-soft); font-weight:700; }
-  .price-box .price{ font-family:'Fraunces',serif; font-size:40px; color:var(--ivory); margin:8px 0 4px; }
-  .price-box .price em{ font-style:normal; color:var(--gold-soft); }
-  .price-box .note{ font-size:12px; color:rgba(244,236,221,0.65); }
+  /* PRICE */
+  .price-box{ text-align:center; position:relative; background:
+      radial-gradient(ellipse 120mm 55mm at 50% -10%, rgba(217,164,65,0.2), transparent 60%),
+      linear-gradient(180deg,var(--night-2),var(--night)); border:1px solid var(--gold); border-radius:18px; padding:24px 26px; margin:16px 0; }
+  .price-box .label{ font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold-soft); font-weight:700; }
+  .price-box .price{ font-family:'Fraunces',serif; font-size:46px; color:var(--ivory); margin:6px 0 4px; line-height:1; }
+  .price-box .price b{ color:var(--gold-soft); font-weight:700; }
+  .price-box .note{ font-size:11.5px; color:rgba(244,236,221,0.65); }
+  .guarantee{ display:inline-flex; align-items:center; gap:8px; margin-top:12px; font-size:11.5px; color:var(--gold-soft); border:1px solid var(--gline); border-radius:999px; padding:6px 14px; }
 
-  .foot{ position:absolute; left:18mm; right:18mm; bottom:14mm; display:flex; justify-content:space-between; font-size:11px; color:rgba(244,236,221,0.5); border-top:1px solid var(--line); padding-top:8px; }
-  .contact-line{ font-size:14px; margin-top:10px; }
-  .contact-line b{ color:var(--gold-soft); }
-  ul.checks{ list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:8px 20px; margin-top:6px; }
-  ul.checks li{ font-size:12.5px; padding-left:22px; position:relative; color:rgba(244,236,221,0.82); }
-  ul.checks li::before{ content:"✓"; position:absolute; left:0; color:var(--gold); font-weight:700; }
-  .cap{ font-size:11px; color:rgba(244,236,221,0.55); margin-top:7px; text-align:center; }
+  /* CONTACT CARD */
+  .contact-card{ background:linear-gradient(135deg,var(--night-2),var(--night-3)); border:1px solid var(--gline); border-radius:16px; padding:22px 24px; display:flex; justify-content:space-between; align-items:center; gap:20px; margin-top:14px; }
+  .cc-name{ font-family:'Fraunces',serif; font-size:22px; }
+  .cc-role{ font-size:12px; color:var(--gold-soft); margin-top:2px; }
+  .cc-lines{ text-align:right; font-size:13px; line-height:1.9; }
+  .cc-lines span{ color:rgba(244,236,221,0.55); display:inline-block; width:78px; text-align:left; }
+  .cc-lines b{ color:var(--ivory); font-weight:700; }
+
+  .foot{ position:absolute; left:16mm; right:16mm; bottom:11mm; display:flex; justify-content:space-between; font-size:10px; color:rgba(244,236,221,0.45); z-index:2; }
 </style>
 </head>
 <body>
 
 <!-- ===== PAGE 1 — COVER ===== -->
 <section class="page cover">
-  <div class="cover-top">
-    <div class="mark">Лазурн<span>ый</span></div>
-    <div class="eyebrow">Коммерческое предложение</div>
-  </div>
-
-  <div style="margin-top:26mm;">
-    <div class="eyebrow" style="margin-bottom:14px;">Банкетный зал · Чита</div>
-    <h1>Готовый сайт, который <em>приводит клиентов</em> на банкеты</h1>
-    <p class="lead">Профессиональный сайт банкетного зала «Лазурный»: витрина зала, интерактивная схема рассадки и форма заявки, которая падает прямо в WhatsApp. Уже готов — осталось наполнить вашими фото и меню.</p>
-
-    <div class="cover-badges">
-      <div class="badge"><b>7</b> страниц</div>
-      <div class="badge">Мобильная версия</div>
-      <div class="badge">Заявки в <b>WhatsApp</b></div>
-      <div class="badge">Поиск Google / Яндекс</div>
+  <div class="inner">
+    <div class="cover-top">
+      <div class="mark">Лазурн<span>ый</span></div>
+      <div class="eyebrow">Коммерческое предложение</div>
     </div>
-  </div>
 
-  <div class="cover-hero">
-    <img class="shadow" src="sales-img/desktop-home.png" alt="Главная страница сайта">
-    <div class="cap">Так сайт выглядит на компьютере</div>
+    <div class="cover-kicker">
+      <div class="eyebrow" style="margin-bottom:14px;">Банкетный зал · Чита</div>
+      <h1>Готовый сайт, который <em>приводит клиентов</em> на банкеты</h1>
+      <p class="lead">Профессиональный сайт банкетного зала «Лазурный»: витрина зала, интерактивная схема рассадки и форма заявки, которая падает прямо в WhatsApp. Сайт уже готов — осталось наполнить вашими фотографиями и меню.</p>
+
+      <div class="divider"><span class="l"></span><span class="d"></span></div>
+
+      <div class="cover-badges">
+        <div class="badge"><b>7</b> страниц</div>
+        <div class="badge">Мобильная версия</div>
+        <div class="badge">Заявки в <b>WhatsApp</b></div>
+        <div class="badge">Поиск Google / Яндекс</div>
+      </div>
+    </div>
+
+    <div class="cover-hero">
+      <img class="shadow" src="sales-img/desktop-home.png" alt="Главная страница сайта">
+      <div class="cap">Так сайт выглядит на компьютере</div>
+    </div>
   </div>
 
   <div class="foot">
     <span>Кафе «Лазурный» · ул. Энергетиков, 5, Чита</span>
-    <span>Предложение о разработке сайта</span>
+    <span>Подготовил: Артём</span>
   </div>
 </section>
 
 <!-- ===== PAGE 2 — WHY ===== -->
 <section class="page">
-  <div class="eyebrow">Зачем залу свой сайт</div>
-  <h2 class="title">Клиенты выбирают зал <span class="gold">в интернете</span></h2>
-  <p class="section-lead">Прежде чем позвонить, человек ищет зал в поиске и на картах, смотрит фото и цены с телефона. Без своего сайта вы теряете тех, кто выбирает именно так — а это большинство.</p>
+  <div class="inner">
+    <div class="runhead"><div class="mark">Лазурн<span>ый</span></div><div class="rh-num">01 — Зачем сайт</div></div>
 
-  <div class="stat-row">
-    <div class="stat"><b>~80%</b><span>ищут зал с телефона</span></div>
-    <div class="stat"><b>1 клик</b><span>до звонка и WhatsApp</span></div>
-    <div class="stat"><b>24/7</b><span>заявки даже ночью</span></div>
+    <div class="eyebrow">Зачем залу свой сайт</div>
+    <h2 class="title">Клиенты выбирают зал <span class="gold">в интернете</span></h2>
+    <p class="section-lead">Прежде чем позвонить, человек ищет зал в поиске и на картах, смотрит фото и цены — чаще всего с телефона. Без своего сайта вы теряете тех, кто выбирает именно так. А это большинство.</p>
+
+    <div class="stat-row">
+      <div class="stat-box"><b>~80%</b><span>ищут зал с телефона</span></div>
+      <div class="stat-box"><b>1 клик</b><span>до звонка и WhatsApp</span></div>
+      <div class="stat-box"><b>24/7</b><span>заявки даже ночью</span></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card"><div class="n">01</div><h3>Своя витрина</h3><p>Не карточка среди конкурентов в 2ГИС, а отдельный сайт, где показан только ваш зал — так, как хотите вы.</p></div>
+      <div class="card"><div class="n">02</div><h3>Заявки без потерь</h3><p>Клиент оставляет заявку в любое время — она мгновенно приходит вам в WhatsApp. Ни одно обращение не теряется.</p></div>
+      <div class="card"><div class="n">03</div><h3>Находят в поиске</h3><p>Сайт оптимизирован под запросы «банкетный зал Чита», «свадьба Чита», «корпоратив Чита».</p></div>
+      <div class="card"><div class="n">04</div><h3>Доверие с первого экрана</h3><p>Солидный дизайн работает на репутацию: с таким сайтом зал выглядит дороже и надёжнее конкурентов.</p></div>
+    </div>
+
+    <div class="highlight">
+      <h3>Один банкет окупает сайт целиком</h3>
+      <p>Сайт — это разовое вложение, а работает он годами. Достаточно одного клиента со свадьбы или корпоратива, который нашёл вас через сайт, — и вложение возвращается полностью.</p>
+    </div>
   </div>
-
-  <div class="grid2">
-    <div class="card"><span class="n">01</span><h3>Своя витрина</h3><p>Не карточка среди конкурентов в 2ГИС, а отдельный сайт, где показан только ваш зал — так, как хотите вы.</p></div>
-    <div class="card"><span class="n">02</span><h3>Заявки без потерь</h3><p>Клиент оставляет заявку в любое время — она мгновенно приходит вам в WhatsApp. Ни одно обращение не теряется.</p></div>
-    <div class="card"><span class="n">03</span><h3>Находят в поиске</h3><p>Сайт оптимизирован под запросы «банкетный зал Чита», «свадьба Чита», «корпоратив Чита».</p></div>
-    <div class="card"><span class="n">04</span><h3>Доверие с первого экрана</h3><p>Солидный дизайн работает на репутацию: с таким сайтом зал выглядит дороже и надёжнее конкурентов.</p></div>
-  </div>
-
-  <div class="highlight">
-    <h3>Один банкет окупает сайт целиком</h3>
-    <p>Сайт — это разовое вложение, а работает он годами. Достаточно одного клиента со свадьбы или корпоратива, который нашёл вас через сайт, — и вложение возвращается.</p>
-  </div>
-
-  <div class="foot"><span>Кафе «Лазурный» · Чита</span><span>2</span></div>
+  <div class="foot"><span>Кафе «Лазурный» · Чита</span><span>02</span></div>
 </section>
 
 <!-- ===== PAGE 3 — WHAT'S INSIDE ===== -->
 <section class="page">
-  <div class="eyebrow">Что уже готово</div>
-  <h2 class="title">Полноценный сайт из <span class="gold">7 страниц</span></h2>
-  <p class="section-lead">Главная, зал и рассадка, банкеты, меню, галерея, отзывы, контакты — плюс страница политики конфиденциальности по закону 152-ФЗ.</p>
+  <div class="inner">
+    <div class="runhead"><div class="mark">Лазурн<span>ый</span></div><div class="rh-num">02 — Что готово</div></div>
 
-  <img class="shadow" src="sales-img/config.png" alt="Интерактивная схема рассадки">
-  <div class="cap">Фирменная фишка — интерактивная схема рассадки: банкет, свадьба, фуршет</div>
+    <div class="eyebrow">Что уже готово</div>
+    <h2 class="title">Полноценный сайт из <span class="gold">7 страниц</span></h2>
+    <p class="section-lead">Главная, зал и рассадка, банкеты, меню, галерея, отзывы, контакты — плюс страница политики конфиденциальности по закону 152-ФЗ.</p>
 
-  <ul class="checks">
-    <li>Интерактивная схема рассадки зала</li>
-    <li>Форма заявки → в WhatsApp</li>
-    <li>Кнопки звонка и WhatsApp</li>
-    <li>Карта проезда</li>
-    <li>Галерея с увеличением фото</li>
-    <li>Блок отзывов гостей</li>
-    <li>Меню на три кухни</li>
-    <li>Адаптация под телефон</li>
-  </ul>
+    <img class="shadow" src="sales-img/config.png" alt="Интерактивная схема рассадки">
+    <div class="cap">Фирменная фишка — интерактивная схема рассадки: банкет · свадьба · фуршет</div>
 
-  <img class="shadow" src="sales-img/gallery.png" alt="Галерея зала" style="margin-top:16px;">
-  <div class="cap">Галерея зала — с местом под ваши реальные фотографии</div>
+    <ul class="checks" style="margin-top:18px;">
+      <li>Интерактивная схема рассадки зала</li>
+      <li>Форма заявки → сразу в WhatsApp</li>
+      <li>Кнопки звонка и WhatsApp</li>
+      <li>Карта проезда</li>
+      <li>Галерея с увеличением фото</li>
+      <li>Блок отзывов гостей</li>
+      <li>Меню на три кухни</li>
+      <li>Адаптация под телефон</li>
+    </ul>
 
-  <div class="foot"><span>Кафе «Лазурный» · Чита</span><span>3</span></div>
+    <img class="shadow" src="sales-img/gallery.png" alt="Галерея зала" style="margin-top:18px;">
+    <div class="cap">Галерея зала — с местом под ваши реальные фотографии</div>
+  </div>
+  <div class="foot"><span>Кафе «Лазурный» · Чита</span><span>03</span></div>
 </section>
 
 <!-- ===== PAGE 4 — MOBILE + WHATSAPP ===== -->
 <section class="page">
-  <div class="eyebrow">Телефон и заявки</div>
-  <h2 class="title">Удобно с телефона — <span class="gold">заявки в WhatsApp</span></h2>
-  <p class="section-lead">Большинство гостей заходят с телефона. Сайт полностью адаптирован: крупные кнопки, понятное меню, звонок и WhatsApp в один тап.</p>
+  <div class="inner">
+    <div class="runhead"><div class="mark">Лазурн<span>ый</span></div><div class="rh-num">03 — Телефон и заявки</div></div>
 
-  <div style="display:flex; gap:16px; align-items:flex-start;">
-    <div style="flex:1;"><img class="shadow" src="sales-img/mobile-home.png" alt="Мобильная версия"><div class="cap">Первый экран на телефоне</div></div>
-    <div style="flex:1;"><img class="shadow" src="sales-img/mobile-menu.png" alt="Мобильное меню"><div class="cap">Удобное меню навигации</div></div>
+    <div class="eyebrow">Телефон и заявки</div>
+    <h2 class="title">Удобно с телефона — <span class="gold">заявки в WhatsApp</span></h2>
+    <p class="section-lead">Большинство гостей заходят с телефона. Сайт полностью адаптирован: крупные кнопки, понятное меню, звонок и WhatsApp в один тап.</p>
+
+    <div style="display:flex; gap:16px; align-items:flex-start;">
+      <div style="flex:1;"><img class="shadow" src="sales-img/mobile-home.png" alt="Мобильная версия"><div class="cap">Первый экран на телефоне</div></div>
+      <div style="flex:1;"><img class="shadow" src="sales-img/mobile-menu.png" alt="Мобильное меню"><div class="cap">Удобное меню навигации</div></div>
+    </div>
+
+    <div class="highlight">
+      <h3>Заявка приходит вам за секунду</h3>
+      <p>Клиент заполняет форму (имя, телефон, дата, гости, повод) и нажимает «Отправить» — заявка сразу открывается у вас в WhatsApp готовым сообщением. Никаких сложных систем: всё работает на обычный телефон администратора.</p>
+    </div>
   </div>
-
-  <div class="highlight">
-    <h3>Заявка приходит вам за секунду</h3>
-    <p>Клиент заполняет форму (имя, телефон, дата, гости, повод) и нажимает «Отправить» — заявка сразу открывается у вас в WhatsApp готовым сообщением. Никаких сложных систем: всё работает на обычный телефон администратора.</p>
-  </div>
-
-  <div class="foot"><span>Кафе «Лазурный» · Чита</span><span>4</span></div>
+  <div class="foot"><span>Кафе «Лазурный» · Чита</span><span>04</span></div>
 </section>
 
 <!-- ===== PAGE 5 — OFFER ===== -->
 <section class="page">
-  <div class="eyebrow">Стоимость и запуск</div>
-  <h2 class="title">Что входит в пакет «под ключ»</h2>
+  <div class="inner">
+    <div class="runhead"><div class="mark">Лазурн<span>ый</span></div><div class="rh-num">04 — Стоимость</div></div>
 
-  <ul class="checks" style="grid-template-columns:1fr 1fr; margin-bottom:8px;">
-    <li>Готовый сайт из 7 страниц</li>
-    <li>Наполнение вашими фото и меню</li>
-    <li>Регистрация домена</li>
-    <li>Размещение и настройка (хостинг)</li>
-    <li>Подключение заявок в WhatsApp</li>
-    <li>Настройка карты и контактов</li>
-    <li>Проверка на телефоне и компьютере</li>
-    <li>Политика конфиденциальности (152-ФЗ)</li>
-  </ul>
+    <div class="eyebrow">Стоимость и запуск</div>
+    <h2 class="title">Что входит в пакет «под ключ»</h2>
 
-  <div class="price-box">
-    <div class="label">Стоимость под ключ</div>
-    <div class="price">от <em>[ВАША ЦЕНА]</em> ₽</div>
-    <div class="note">Разовая оплата. Домен и хостинг — символические расходы в год.</div>
+    <ul class="checks" style="margin:14px 0 6px;">
+      <li>Готовый сайт из 7 страниц</li>
+      <li>Наполнение вашими фото и меню</li>
+      <li>Регистрация домена</li>
+      <li>Размещение и настройка (хостинг)</li>
+      <li>Подключение заявок в WhatsApp</li>
+      <li>Настройка карты и контактов</li>
+      <li>Проверка на телефоне и ПК</li>
+      <li>Правки 7 дней после запуска — бесплатно</li>
+    </ul>
+
+    <div class="price-box">
+      <div class="label">Стоимость под ключ</div>
+      <div class="price"><b>30 000</b> ₽</div>
+      <div class="note">Разовая оплата. Домен и хостинг — от ~2 000 ₽/год, оплачиваются отдельно.</div>
+      <div class="guarantee">✓ Гарантия правок 7 дней после запуска</div>
+    </div>
+
+    <h2 class="title" style="font-size:19px; margin-top:10px;">Запускаем за 3 шага</h2>
+    <div class="steps" style="margin-top:8px;">
+      <div class="step"><div class="num">1</div><div><h3>Вы присылаете фото и меню</h3><p>Фото зала и блюд можно снять на телефон, меню — прайс или фото бумажного меню.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h3>Я наполняю и запускаю сайт</h3><p>Вставляю ваши материалы, подключаю домен и размещаю сайт в интернете — за пару дней.</p></div></div>
+      <div class="step"><div class="num">3</div><div><h3>Сайт работает и приводит заявки</h3><p>Вы получаете обращения клиентов прямо в WhatsApp и принимаете брони.</p></div></div>
+    </div>
+
+    <div class="contact-card">
+      <div>
+        <div class="cc-name">Артём</div>
+        <div class="cc-role">Разработка и запуск сайта</div>
+      </div>
+      <div class="cc-lines">
+        <div><span>Телефон</span> <b>+7 920 989 72 50</b></div>
+        <div><span>WhatsApp</span> <b>+7 920 989 72 50</b></div>
+        <div><span>Telegram</span> <b>+7 920 989 72 50</b></div>
+      </div>
+    </div>
   </div>
-
-  <h2 class="title" style="font-size:20px; margin-top:8px;">Запускаем за 3 шага</h2>
-  <div class="steps">
-    <div class="step"><div class="num">1</div><div><h3>Вы присылаете фото и меню</h3><p>Фото зала и блюд можно снять на телефон, меню — прайс или фото бумажного меню.</p></div></div>
-    <div class="step"><div class="num">2</div><div><h3>Я наполняю и запускаю сайт</h3><p>Вставляю ваши материалы, подключаю домен и размещаю сайт в интернете — за пару дней.</p></div></div>
-    <div class="step"><div class="num">3</div><div><h3>Сайт работает и приводит заявки</h3><p>Вы получаете обращения клиентов прямо в WhatsApp и принимаете брони.</p></div></div>
-  </div>
-
-  <div class="highlight" style="text-align:center;">
-    <h3>Готовы начать?</h3>
-    <p>Свяжитесь со мной — покажу готовый сайт на вашем домене и отвечу на вопросы.</p>
-    <div class="contact-line"><b>[Ваше имя]</b> · тел. <b>[ваш телефон]</b> · <b>[ваш WhatsApp / Telegram]</b></div>
-  </div>
-
-  <div class="foot"><span>Кафе «Лазурный» · Чита</span><span>5</span></div>
+  <div class="foot"><span>Кафе «Лазурный» · Чита</span><span>05</span></div>
 </section>
 
 </body>
